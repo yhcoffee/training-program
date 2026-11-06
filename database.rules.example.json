@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "trainingProgram": {
+      "v1": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}
