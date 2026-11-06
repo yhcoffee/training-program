@@ -1,0 +1,358 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6f6f4"><title>YIHUI · Training</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nixie+One&display=swap');
+:root{--bg:#f6f6f4;--paper:#fff;--ink:#171717;--muted:#787874;--line:#dddeda;--soft:#f0f0ed;--green:#366851;--greenbg:#eff7f1;--amber:#88652a;--amberbg:#fff8ee;--rad:11px}
+*{box-sizing:border-box}html{scrollbar-gutter:stable}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 'DM Sans',Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}a{color:inherit}h1,h2,h3,p{margin-top:0}h1,h2{font-family:'Nixie One',Georgia,serif;font-weight:400}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #666;outline-offset:2px}
+.app{display:grid;grid-template-columns:235px minmax(0,1fr);min-height:100vh}.side{background:#efefec;border-right:1px solid var(--line);padding:29px 15px 17px;display:flex;flex-direction:column;gap:24px;height:100vh;position:sticky;top:0;min-width:0}.brand{font:400 24px 'Nixie One',Georgia,serif;letter-spacing:.16em;margin:0 12px}.section-label{font-size:10px;font-weight:700;letter-spacing:.14em;color:#858580;text-transform:uppercase;margin:0 12px 7px}.nav{display:grid;gap:3px}.nav button{display:flex;width:100%;gap:10px;align-items:center;text-align:left;border:1px solid transparent;background:transparent;border-radius:8px;padding:11px 12px;color:#555;font-weight:600}.nav button:hover{background:#e5e5e1}.nav button.active{background:white;border-color:#ddd;color:#181818}.nav-icon{font-size:17px;width:22px;text-align:center;font-weight:400}.side-footer{margin-top:auto;border-top:1px solid var(--line);padding:14px 10px 0;font-size:11px;color:#898984}.layout{min-width:0;width:100%;max-width:1370px;margin:0 auto;padding:25px clamp(18px,3.8vw,54px) 55px}.topline{display:flex;align-items:center;justify-content:space-between;gap:12px}.muted{color:#777}.tiny{font-size:11px;color:#999}.btn{border:1px solid #d3d3cf;background:white;color:#222;border-radius:8px;padding:9px 14px;min-height:39px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none}.btn:hover{background:#f0f0ee}.btn.dark{background:#171717;color:white;border-color:#171717}.btn.dark:hover{background:#333}.btn.ghost{background:transparent;border-color:transparent}.btn.danger{color:#a04039}.btn.small{font-size:12px;padding:6px 10px;min-height:32px}.pagehead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:30px 0 22px}.pagehead h1{font-size:clamp(30px,3.4vw,43px);margin:0 0 4px}.pagehead p{margin:0;color:#777}.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pill{border:1px solid var(--line);color:#666;border-radius:30px;padding:4px 9px;font-size:11px;white-space:nowrap}.pill.good{color:var(--green);border-color:#c8ddce;background:var(--greenbg)}.pill.warn{color:var(--amber);border-color:#ecdcc1;background:var(--amberbg)}
+.panel{background:white;border:1px solid var(--line);border-radius:var(--rad);padding:22px;min-width:0}.panel+.panel{margin-top:14px}.panel h2{font-size:22px;margin-bottom:15px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:15px}.metric{background:white;border:1px solid var(--line);border-radius:var(--rad);padding:19px}.metric .label{color:#888;font-size:11px;text-transform:uppercase;letter-spacing:.09em}.metric strong{display:block;font:400 33px 'Nixie One',Georgia,serif;margin-top:7px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.table-list{display:grid}.person{display:grid;grid-template-columns:minmax(0,1fr) 130px 105px 26px;align-items:center;gap:14px;padding:15px 5px;border-bottom:1px solid #eee;cursor:pointer}.person:last-child{border-bottom:0}.person:hover{background:#fafaf8}.person b{font-size:15px}.person .sub{font-size:12px;color:#888}.progress{height:6px;background:#ececea;border-radius:6px;overflow:hidden}.progress span{height:100%;background:#222;display:block;border-radius:6px}.progress.good span{background:var(--green)}.empty{padding:50px 20px;text-align:center;color:#888}.empty h3{font-weight:600;color:#222;margin-bottom:5px;font-size:17px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:15px}.field{display:grid;gap:6px;min-width:0}.field label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#777;font-weight:700}.input,.field input,.field textarea,.field select{width:100%;min-width:0;border:1px solid #d4d4d0;background:#fff;color:#191919;padding:11px 12px;border-radius:8px;min-height:41px}.field textarea{min-height:110px;resize:vertical;line-height:1.55}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.section-heading h2,.section-heading h3{font-family:'Nixie One',Georgia,serif;font-weight:400;margin:0}.week{margin:18px 0 25px}.week-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 0 13px;border-bottom:1px solid #cfcfcb;margin-bottom:10px}.week-heading strong{font-weight:700;font-size:13px}.week-heading small{font-size:11px;color:#888}.shift-list{display:grid;gap:9px}.shift{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.shift-head{display:flex;align-items:center;gap:13px;width:100%;padding:16px;border:0;background:transparent;text-align:left}.shift-head .num{font-size:13px;color:#999;min-width:25px;font-variant-numeric:tabular-nums}.shift-head .title{flex:1;font-size:16px;font-weight:600}.shift-head .meta{color:#888;font-size:12px}.shift-head .chevron{font-size:18px;color:#888}.shift-head:hover{background:#fafaf8}.shift-body{border-top:1px solid #eee;padding:19px}.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.copy{font-size:13px;color:#525250;line-height:1.65;margin:6px 0 0;white-space:pre-wrap}.caption{font-size:10px;letter-spacing:.1em;color:#878780;font-weight:700;text-transform:uppercase}.check-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0ee}.check-row:last-child{border-bottom:0}.check-row input[type=checkbox]{width:19px;height:19px;accent-color:#376b53;flex:none;margin:2px 0 0}.check-label{flex:1;line-height:1.5}.check-label.done{color:#777;text-decoration:line-through}.check-date{font-size:11px;color:#aaa;white-space:nowrap}.notes{min-height:72px!important;font-size:13px}.tabbar{display:flex;align-items:center;gap:2px;border-bottom:1px solid #ddd;overflow:auto;margin:0 0 19px}.tab{padding:12px 17px;border:0;border-bottom:2px solid transparent;background:transparent;font-weight:600;color:#888;white-space:nowrap;font-size:13px}.tab.active{color:#171717;border-color:#171717}.skill-group{margin:0 0 15px;padding:19px 21px;background:white;border:1px solid var(--line);border-radius:11px}.skill-group h3{font-family:'Nixie One',Georgia,serif;font-size:20px;font-weight:400;margin:0 0 7px}.skill-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #eee}.skill-row:last-child{border-bottom:0}.skill-row .label{flex:1}.skill-row .label small{display:block;color:#888}.status-options{display:flex;gap:4px;flex-wrap:wrap}.status-btn{padding:7px 10px;border:1px solid #ddd;background:white;color:#666;border-radius:6px;font-size:12px;min-width:35px}.status-btn.selected{border-color:#536b58;background:#eaf2eb;color:#234936;font-weight:700}.status-btn.selected.pending{border-color:#b8985f;background:#fff8ec;color:#77531c}.status-btn.selected.needs{border-color:#ca9c94;background:#fdf0ed;color:#973c36}.skill-note{width:100%;resize:vertical;min-height:55px;font-size:12px!important}.subheading{font-size:13px;font-weight:700;margin:19px 0 8px}.callout{font-size:12px;color:#777;border-left:2px solid #aaa;padding:9px 12px;background:#f5f5f3}.editrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #eee}.editrow:last-child{border-bottom:0}.editrow .left{min-width:0;flex:1}.editrow b{font-size:14px}.editrow small{display:block;color:#888}.check-edit{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #eee}.check-edit:last-child{border-bottom:0}.footer{text-align:center;padding:25px 0 0;color:#999;font-size:11px}.overlay{position:fixed;inset:0;background:#0008;z-index:50;display:flex;align-items:center;justify-content:center;padding:15px}.modal{width:min(100%,590px);max-height:min(92dvh,800px);overflow:auto;background:#fff;border-radius:13px;padding:24px;box-shadow:0 25px 85px #0002}.modal h2{font-size:25px;margin:0 0 18px}.modal-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-top:22px}.hr{border:0;border-top:1px solid #eee;margin:18px 0}.mobilebar{display:none}.hidden{display:none!important}.autosave{font-size:11px;color:#888}.toast{position:fixed;right:20px;bottom:20px;z-index:90;background:#171717;color:white;border-radius:8px;padding:10px 15px;font-size:12px}.drag{cursor:grab;color:#aaa}
+@media(max-width:920px){.app{grid-template-columns:195px minmax(0,1fr)}.content-grid,.grid2{grid-template-columns:1fr}}@media(max-width:700px){.app{display:block}.side{display:none}.mobilebar{display:flex;position:sticky;top:0;z-index:20;align-items:center;justify-content:space-between;gap:7px;padding:12px 15px;background:#f6f6f4;border-bottom:1px solid var(--line)}.mobilebar .brand{font-size:20px;margin:0}.mobile-nav{display:flex;gap:5px;max-width:100%;overflow:auto}.mobile-nav button{padding:7px 10px;background:transparent;border:0;border-radius:7px;font-size:12px;color:#777;white-space:nowrap}.mobile-nav button.active{background:#191919;color:white}.layout{padding:19px 14px 34px}.pagehead{margin:10px 0 20px;align-items:start;flex-wrap:wrap}.pagehead h1{font-size:31px}.pagehead .actions{width:100%}.pagehead .actions .btn{flex:1}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metrics>*:last-child{grid-column:span 2}.metric{padding:14px}.metric strong{font-size:26px}.panel{padding:16px}.person{grid-template-columns:minmax(0,1fr) 110px 22px}.person>.percent{display:none}.fields{grid-template-columns:1fr}.shift-head{padding:13px}.shift-head .title{font-size:14px}.shift-head .meta{display:none}.shift-body{padding:14px}.skill-row{align-items:stretch;flex-wrap:wrap}.skill-row .label{flex-basis:100%}.status-options{width:100%;display:grid;grid-template-columns:repeat(3,1fr)}.status-btn{min-height:41px}.week-heading{align-items:start}.toolbar>.actions{width:100%;justify-content:flex-start}.check-row{gap:9px}.check-date{display:none}.modal{padding:18px}.footer{padding-bottom:18px}}
+@media print{body{background:white}nav,.side,.mobilebar,.no-print,.footer,.actions,.tabbar,.btn,.overlay{display:none!important}.app{display:block}.layout{max-width:100%;padding:0}.panel,.shift,.skill-group{border:1px solid #ddd;break-inside:avoid}.shift-head{padding:8px}.shift-body{display:block!important}.pagehead{margin:0 0 12px}.pagehead h1{font-size:27px}.week{break-inside:avoid}textarea,input{border:0!important}}
+
+/* v1.1: single-step shifts and three-lead competency signoff */
+.shift-head{padding:0;display:flex;gap:0;align-items:stretch}
+.shift-expand{display:flex;gap:12px;align-items:center;flex:1;min-width:0;background:transparent;border:0;text-align:left;padding:16px;cursor:pointer}
+.shift-expand:hover{background:#fafaf8}
+.shift-expand .title{min-width:0;flex:1;font-size:15px;font-weight:600}
+.shift-expand .num{color:#999;min-width:25px;font-variant-numeric:tabular-nums}
+.shift-expand .chevron{font-size:19px;color:#999}
+.shift-complete{display:flex;align-items:center;gap:8px;padding:10px 17px;cursor:pointer;border-left:1px solid #eee;font-weight:600;font-size:12px;white-space:nowrap}
+.shift-complete input{width:19px;height:19px;accent-color:var(--green);cursor:pointer}
+.shift-complete.is-done{background:var(--greenbg);color:var(--green)}
+.shift-initial{display:inline-block;font-size:10px;letter-spacing:.03em;padding:2px 5px;border:1px solid #c8dace;border-radius:4px;color:#32604a;background:#fff;white-space:nowrap}
+.competency-intro{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:0 0 17px;font-size:12px;color:#666}
+.competency-intro span:last-child{white-space:nowrap;font-weight:700;color:#444}
+.competency-table{padding:0;overflow:hidden}
+.competency-table .section-heading{padding:18px 20px 15px;margin:0}
+.competency-header,.competency-line{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,86px);gap:0;align-items:center}
+.competency-header{background:#f7f7f5;color:#888;border-top:1px solid #eee;border-bottom:1px solid #eee;font-size:10px;letter-spacing:.055em;text-transform:uppercase;font-weight:700}
+.competency-header span{padding:11px 16px}
+.competency-header span:not(:first-child){text-align:center;padding-left:2px;padding-right:2px}
+.competency-entry{border-bottom:1px solid #eee}
+.competency-entry:last-child{border-bottom:0}
+.competency-line{min-height:56px}
+.competency-label{font-size:13px;font-weight:500;line-height:1.45;padding:12px 16px}
+.lead-check{display:flex;align-items:center;justify-content:center;min-height:52px;cursor:pointer;border-left:1px solid #f1f1ef}
+.lead-check input{width:22px;height:22px;margin:0;cursor:pointer;accent-color:var(--green)}
+.lead-mobile-label{display:none}
+.competency-note{margin:0;padding:0 16px 12px}
+.competency-note textarea{font-size:12px!important;min-height:42px;max-height:110px;padding:10px 11px;background:#fafaf9;border:1px solid #eeeeeb}
+@media(max-width:700px){
+ .shift-expand{padding:13px 10px;gap:7px}
+ .shift-expand .title{font-size:13px}
+ .shift-complete{padding:8px 10px;font-size:11px;gap:5px}
+ .shift-complete input{width:21px;height:21px}
+ .competency-intro{align-items:flex-start;flex-direction:column;gap:5px}
+ .competency-table .section-heading{padding:15px 13px}
+ .competency-header,.competency-line{grid-template-columns:minmax(0,1fr) repeat(3,53px)}
+ .competency-header span{padding:9px 10px}
+ .competency-header span:not(:first-child){font-size:9px}
+ .competency-label{font-size:12px;padding:12px 10px;overflow-wrap:anywhere}
+ .lead-check{min-height:52px}
+ .lead-check input{width:20px;height:20px}
+ .competency-note{padding:0 10px 10px}
+}
+@media(max-width:350px){.competency-header,.competency-line{grid-template-columns:minmax(0,1fr) repeat(3,43px)}.competency-label{font-size:11px}.competency-header span:not(:first-child){font-size:8px}}
+
+/* Note indicator on completed roadmap shifts */
+.shift-note-flag{display:inline-flex;align-items:center;gap:5px;flex:none;padding:3px 7px;border:1px solid #ead7b5;border-radius:5px;color:#805d24;background:#fff9ee;font-size:11px;font-weight:700;white-space:nowrap}
+.shift-note-flag::before{content:"";width:6px;height:6px;background:#b58a3e;border-radius:50%}
+.shift-note-flag.hidden{display:none!important}
+@media(max-width:700px){.shift-note-flag{font-size:10px;padding:3px 5px;gap:4px}.shift-expand{min-width:0}.shift-expand .title{min-width:0;overflow-wrap:anywhere}}
+
+/* v1.3 program content management */
+.edit-switch{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#666;cursor:pointer;user-select:none;padding:7px 2px}
+.edit-switch input{position:absolute;width:1px;height:1px;opacity:0}
+.switch-track{display:inline-block;width:39px;height:23px;border:1px solid #d0d0cc;border-radius:20px;background:#dddeda;position:relative;transition:background .16s}
+.switch-track:after{content:"";position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0002;transition:transform .16s}
+.edit-switch input:checked+.switch-track{background:#202020;border-color:#202020}
+.edit-switch input:checked+.switch-track:after{transform:translateX(16px)}
+.edit-switch input:focus-visible+.switch-track{outline:2px solid #444;outline-offset:3px}
+.edit-switch.is-active{color:#171717}
+.program-tools{display:flex;justify-content:flex-end;min-height:9px;margin-bottom:10px}
+.program-week{margin:0 0 23px;min-width:0}
+.program-week-top{display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid #cececa;padding:12px 0;margin-bottom:11px;min-width:0}
+.program-week-title{min-width:0;flex:1}
+.program-week-title h2{font:400 23px/1.35 'Nixie One',Georgia,serif;margin:2px 0 0;overflow-wrap:anywhere}
+.week-index{color:#888;font-size:10px;font-weight:700;letter-spacing:.1em}
+.program-edit-actions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.program-edit-actions .btn{font-size:11px;min-height:34px;padding:6px 10px}
+.program-shift .shift-head{width:100%;display:flex;padding:0;align-items:stretch}
+.program-shift .shift-expand{width:100%;min-width:0}
+.program-shift .shift-body{padding:17px 20px 20px}
+.shift-edit-actions{margin-bottom:17px;padding-bottom:12px;border-bottom:1px solid #eee;justify-content:flex-end}
+.editor-content{display:grid;gap:14px}
+.editor-content .skill-group{margin:0}
+.editor-content .section-heading{align-items:center;flex-wrap:wrap}
+.editor-content .editrow .left{line-height:1.5;overflow-wrap:anywhere}
+@media(max-width:700px){
+ .program-week-top{align-items:flex-start;flex-wrap:wrap;gap:8px}
+ .program-week-title{flex-basis:100%}
+ .program-week-title h2{font-size:20px}
+ .program-edit-actions{max-width:100%}
+ .program-shift .shift-body{padding:14px}
+ .shift-edit-actions{justify-content:flex-start}
+ .editor-content .editrow{align-items:flex-start;flex-wrap:wrap}
+ .editor-content .editrow .left{flex-basis:100%}
+ .edit-switch{padding:8px 0}
+}
+
+/* Firebase shared data + discreet settings access */
+.settings-link{width:100%;border:0;background:transparent;color:#777;padding:7px 0 13px;text-align:left;font-size:12px;cursor:pointer}
+.settings-link:hover{color:#161616;text-decoration:underline;text-underline-offset:3px}
+.mobile-settings{flex:none;border:1px solid var(--line);background:#fff;border-radius:7px;width:34px;height:34px;display:grid;place-items:center;color:#555;font-size:20px}
+.cloud-status{font-size:12px;border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:#fff;color:#666;margin-bottom:15px}
+.cloud-status.is-error{border-color:#e7b3a9;color:#96392b;background:#fff5f3}
+.cloud-status.is-saving{color:#825f28;background:#fffcf5}
+#cloudGate{position:fixed;inset:0;z-index:120;background:#f6f6f4;display:flex;align-items:center;justify-content:center;padding:24px}
+#cloudGate .gate-inner{max-width:430px;text-align:left;background:white;border:1px solid #dddeda;border-radius:12px;padding:26px;width:100%}
+#cloudGate .gate-title{font:400 27px/1.25 'Nixie One',Georgia,serif;margin-bottom:13px}
+#cloudGate .gate-message{color:#666;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.trainee-progress-anchor{display:none}
+@media(max-width:700px){
+ .trainee-metrics{display:none}
+ .trainee-progress-anchor{display:block;position:relative;margin:0 0 16px}
+ .trainee-progress-card{background:#fff;border:1px solid #dededa;border-radius:9px;padding:13px 15px;min-width:0}
+ .trainee-progress-card.progress-fixed{position:fixed;top:var(--mobile-nav-height,58px);left:0;right:0;width:100%;z-index:19;border-radius:0;border-left:0;border-right:0;border-top:0;box-shadow:0 4px 14px #00000010}
+ .trainee-progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:9px;font-size:12px;margin-bottom:10px}
+ .trainee-progress-top strong{font-weight:700}
+ .trainee-progress-top span{color:#666;font-variant-numeric:tabular-nums}
+ .trainee-progress-card .progress{height:7px}
+ .trainee-progress-sub{font-size:10px;color:#888;margin-top:8px}
+ .mobile-nav{flex:1;min-width:0}
+}
+</style></head><body><div id="cloudGate"><div class="gate-inner"><div class="gate-title">YIHUI</div><div class="gate-message" id="cloudGateMessage">Connecting to shared training data…</div></div></div><div id="app"></div><div id="overlay-root"></div><div id="toast-root"></div><script>
+'use strict';
+const STORAGE_KEY='yihui_training_app_v1';
+const TRAINING_VERSION='1.5';
+const SEED={"weeks":[{"id":"w1","name":"Foundation & Station Exposure","shifts":[{"id":"s1","title":"Orientation + Finish","teach":"Store workflow, station roles, appearance standards, cream tops, garnishes, milk and finished-drink presentation.","practice":"Shadow finish and assemble drinks with trainer. During a rush, support finish.","checks":[{"id":"s1_teach","text":"Review teaching topics"},{"id":"s1_practice","text":"Complete hands-on practice"}]},{"id":"s2","title":"Menu + Register + Hospitality","teach":"Menu ingredients, flavor profiles, modifications, allergens, POS and guest recommendations.","practice":"Take orders during quiet periods; observe combined register/espresso workflow during rushes.","checks":[{"id":"s2_teach","text":"Review teaching topics"},{"id":"s2_practice","text":"Complete hands-on practice"}]},{"id":"s3","title":"Espresso + Register Integration","teach":"Machine operation, grinder basics, shot recipes, order sequencing and register-to-espresso communication.","practice":"Practice one function at a time; trainer controls the combined station when busy.","checks":[{"id":"s3_teach","text":"Review teaching topics"},{"id":"s3_practice","text":"Complete hands-on practice"}]},{"id":"s4","title":"Prep + Kitchen","teach":"Recipes, modifications, fridge stocking, restocking, syrup and cold brew procedures, labeling and dishwashing.","practice":"Prepare components and work prep with supervision; revisit finish.","checks":[{"id":"s4_teach","text":"Review teaching topics"},{"id":"s4_practice","text":"Complete hands-on practice"}]}]},{"id":"w2","name":"Technical Skills & Integration","shifts":[{"id":"s5","title":"Dial-in + Register","teach":"Dose, yield, extraction time, grinder adjustment, sensory basics and POS/espresso handoffs.","practice":"Dial in with trainer guidance and make espresso in suitable service windows.","checks":[{"id":"s5_teach","text":"Review teaching topics"},{"id":"s5_practice","text":"Complete hands-on practice"}]},{"id":"s6","title":"Pour-over + Tasting","teach":"House recipes, grind, agitation, pouring patterns, extraction and sensory evaluation.","practice":"Brew, compare and discuss coffees; assist production between practice blocks.","checks":[{"id":"s6_teach","text":"Review teaching topics"},{"id":"s6_practice","text":"Complete hands-on practice"}]},{"id":"s7","title":"Prep + Finish Integration","teach":"Drink sequencing, cream top consistency, garnishing, accuracy, communication and station resets.","practice":"Rotate between prep and finish, aiming for fewer prompts.","checks":[{"id":"s7_teach","text":"Review teaching topics"},{"id":"s7_practice","text":"Complete hands-on practice"}]},{"id":"s8","title":"Register + Espresso Rotation","teach":"Review menu knowledge, modifications and shot quality; practice prioritization under pressure.","practice":"Supervised combined-station practice when flow permits; trainer takes over during rushes.","checks":[{"id":"s8_teach","text":"Review teaching topics"},{"id":"s8_practice","text":"Complete hands-on practice"}]}]},{"id":"w3","name":"Independent Practice & Refinement","shifts":[{"id":"s9","title":"Prep + Finish Independence","teach":"Targeted corrections to presentation, speed, stocking and cleaning.","practice":"Run prep and finish with observation and limited prompting.","checks":[{"id":"s9_teach","text":"Review teaching topics"},{"id":"s9_practice","text":"Complete hands-on practice"}]},{"id":"s10","title":"Espresso + Brewing Practice","teach":"Refine dial-in decisions, shot quality, pour-over technique and tasting.","practice":"Practice espresso and pour-over during appropriate service windows.","checks":[{"id":"s10_teach","text":"Review teaching topics"},{"id":"s10_practice","text":"Complete hands-on practice"}]},{"id":"s11","title":"Full Workflow Rotation","teach":"Review weaker areas, service communication and consistency between stations.","practice":"Rotate through register, prep, finish and espresso; complete kitchen and cleaning tasks.","checks":[{"id":"s11_teach","text":"Review teaching topics"},{"id":"s11_practice","text":"Complete hands-on practice"}]},{"id":"s12","title":"Regular Shift","teach":"","practice":"Work a regular assigned station and follow the normal team workflow.","checks":[{"id":"s12_shift","text":"Complete regular assigned shift"}]}]}],"skills":[{"id":"c1","name":"Register / Menu / Hospitality","items":[{"id":"c1_i1","text":"Navigate POS accurately and apply drink modifications"},{"id":"c1_i2","text":"Explain core menu items and signature flavor profiles"},{"id":"c1_i3","text":"Identify ingredients and handle allergy questions appropriately"},{"id":"c1_i4","text":"Make recommendations and communicate with guests"},{"id":"c1_i5","text":"Coordinate orders with espresso and other stations"}]},{"id":"c2","name":"Prep Station","items":[{"id":"c2_i1","text":"Follow recipes and modifications accurately"},{"id":"c2_i2","text":"Organize ingredients and maintain mise en place"},{"id":"c2_i3","text":"Stock fridges and replenish items before shortages"},{"id":"c2_i4","text":"Communicate handoffs to finish and espresso"},{"id":"c2_i5","text":"Clean throughout service without reminders"}]},{"id":"c3","name":"Finish Station","items":[{"id":"c3_i1","text":"Assemble drinks in correct sequence and proportions"},{"id":"c3_i2","text":"Produce consistent cream top texture and portion"},{"id":"c3_i3","text":"Apply garnishes and meet presentation standards"},{"id":"c3_i4","text":"Steam milk to correct texture and temperature"},{"id":"c3_i5","text":"Pour latte art to YIHUI presentation standards"}]},{"id":"c4","name":"Register + Espresso","items":[{"id":"c4_i1","text":"Operate machine and grinders safely and correctly"},{"id":"c4_i2","text":"Follow espresso dose / yield / time recipes"},{"id":"c4_i3","text":"Dial in using taste and extraction feedback"},{"id":"c4_i4","text":"Maintain shot quality and clean espresso equipment"},{"id":"c4_i5","text":"Manage register-to-espresso handoffs without bottlenecks"}]},{"id":"c5","name":"Pour-over","items":[{"id":"c5_i1","text":"Execute house brew recipe consistently"},{"id":"c5_i2","text":"Explain role of agitation, grind and extraction"},{"id":"c5_i3","text":"Control pouring and brew timing"},{"id":"c5_i4","text":"Taste and identify under/over-extraction"},{"id":"c5_i5","text":"Make reasoned brewing adjustments"}]},{"id":"c6","name":"Kitchen","items":[{"id":"c6_i1","text":"Follow syrup recipes and batch procedures"},{"id":"c6_i2","text":"Prepare cold brew to specification"},{"id":"c6_i3","text":"Label, date and store products correctly"},{"id":"c6_i4","text":"Follow dishwashing and sanitation protocols"}]},{"id":"c7","name":"Cleaning / Daily Standards","items":[{"id":"c7_i1","text":"Maintain clean stations during service"},{"id":"c7_i2","text":"Complete opening and closing / shift tasks"},{"id":"c7_i3","text":"Handle glassware, tools and equipment correctly"},{"id":"c7_i4","text":"Restock and reset station for next shift"}]}],"trainees":[]};
+const clone=x=>JSON.parse(JSON.stringify(x));
+let data=load(),view='overview',activeTrainee=null,traineeTab='roadmap',openShifts=new Set(),modalState=null,editMode=false;
+let selectedWeek=null;
+let cloudStatus='connecting',cloudStatusText='Connecting to Firebase…',cloudReady=false;
+let shadowData=clone(data),serverData=null,pendingEdits=[],sendingEdits=[],sending=false,pushTimer=null,initialCloudLoaded=false;
+const changeJson=x=>JSON.stringify(x);
+function validCloudData(x){return !!x&&Array.isArray(x.weeks)&&Array.isArray(x.skills)&&Array.isArray(x.trainees)}
+function diffChanges(from,to,path=[],changes=[]){
+ if(changeJson(from)===changeJson(to))return changes;
+ // Arrays with stable ID keys can be merged safely even when other managers edit different trainees or skills.
+ if(Array.isArray(from)&&Array.isArray(to)&&from.concat(to).every(x=>x&&typeof x==='object'&&!Array.isArray(x)&&typeof x.id==='string')){
+  const oldMap=new Map(from.map(x=>[x.id,x])),nextMap=new Map(to.map(x=>[x.id,x]));
+  for(const x of from)if(!nextMap.has(x.id))changes.push({type:'remove',path,id:x.id});
+  for(const x of to){if(!oldMap.has(x.id))changes.push({type:'add',path,id:x.id,value:clone(x)});else diffChanges(oldMap.get(x.id),x,[...path,{id:x.id}],changes)}
+  if(from.map(x=>x.id).join('|')!==to.map(x=>x.id).join('|'))changes.push({type:'order',path,ids:to.map(x=>x.id)});
+  return changes;
+ }
+ if(from&&to&&typeof from==='object'&&typeof to==='object'&&!Array.isArray(from)&&!Array.isArray(to)){
+  for(const k of new Set([...Object.keys(from),...Object.keys(to)]))diffChanges(from[k],to[k],[...path,k],changes);
+  return changes;
+ }
+ changes.push({type:'set',path,value:to===undefined?undefined:clone(to)});
+ return changes;
+}
+function locate(root,path,create=false){
+ let node=root;
+ for(const k of path){
+  if(typeof k==='object'){
+   if(!Array.isArray(node))return undefined;
+   let item=node.find(x=>x.id===k.id);
+   if(!item&&create){item={id:k.id};node.push(item)}
+   node=item;
+  }else{
+   if(node==null)return undefined;
+   if(node[k]===undefined&&create)node[k]={};
+   node=node[k];
+  }
+ }
+ return node;
+}
+function applyChanges(snapshot,changes){
+ const base=validCloudData(snapshot)?clone(snapshot):clone(SEED);
+ for(const c of changes){
+  if(c.type==='set'){
+   if(!c.path.length)continue;
+   const parent=locate(base,c.path.slice(0,-1),true),k=c.path.at(-1);
+   if(parent){if(c.value===undefined)delete parent[k];else parent[k]=clone(c.value)}
+  }else{
+   const arr=locate(base,c.path,true);if(!Array.isArray(arr))continue;
+   if(c.type==='remove'){let i=arr.findIndex(x=>x.id===c.id);if(i>=0)arr.splice(i,1)}
+   if(c.type==='add'&&!arr.some(x=>x.id===c.id))arr.push(clone(c.value));
+   if(c.type==='order'){let ranked=new Map(c.ids.map((id,i)=>[id,i]));arr.sort((a,b)=>(ranked.get(a.id)??999999)-(ranked.get(b.id)??999999))}
+  }
+ }
+ return base;
+}
+function setCloudStatus(status,message){cloudStatus=status;cloudStatusText=message;const el=document.getElementById('cloudDataStatus');if(el){el.textContent=message;el.classList.toggle('is-error',status==='error');el.classList.toggle('is-saving',status==='saving')}}
+function refreshFromCloud(){
+ // Do not invalidate objects captured by a modal or overwrite active notes while someone types.
+ const el=document.activeElement;
+ if(modalState||(el&&el.matches('input, textarea, select')))return;
+ data=applyChanges(serverData,[...sendingEdits,...pendingEdits]);shadowData=clone(data);
+ render();
+}
+function scheduleUpload(){clearTimeout(pushTimer);pushTimer=setTimeout(uploadChanges,480)}
+function updateTraineeProgressPosition(){
+ const anchor=document.getElementById('traineeProgressAnchor');const bar=anchor?.querySelector('.trainee-progress-card');
+ if(!anchor||!bar)return;
+ const mobile=window.matchMedia('(max-width:700px)').matches;
+ if(!mobile){bar.classList.remove('progress-fixed');anchor.style.height='';return}
+ const nav=document.querySelector('.mobilebar');const top=nav?.getBoundingClientRect().bottom||0;
+ document.documentElement.style.setProperty('--mobile-nav-height',Math.round(top)+'px');
+ if(anchor.getBoundingClientRect().top<top){
+  if(!bar.classList.contains('progress-fixed')){anchor.style.height=bar.getBoundingClientRect().height+16+'px';bar.classList.add('progress-fixed')}
+ }else if(bar.classList.contains('progress-fixed')){bar.classList.remove('progress-fixed');anchor.style.height=''}
+}
+window.addEventListener('scroll',updateTraineeProgressPosition,{passive:true});
+window.addEventListener('resize',updateTraineeProgressPosition,{passive:true});
+window.addEventListener('focusout',()=>{if(cloudReady)setTimeout(()=>{if(!document.activeElement?.matches('input,textarea,select'))refreshFromCloud()},30)});
+
+function load(){try{let x=JSON.parse(localStorage.getItem(STORAGE_KEY));if(x&&Array.isArray(x.weeks)&&Array.isArray(x.skills)&&Array.isArray(x.trainees))return x}catch(e){}return clone(SEED)}
+function save(){
+ if(!cloudReady){alert('The shared database has not connected. Your changes were not saved.');return}
+ const ops=diffChanges(shadowData,data);
+ if(!ops.length)return;
+ pendingEdits.push(...ops);shadowData=clone(data);
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch(e){}
+ setCloudStatus('saving','Syncing changes…');scheduleUpload();
+}
+function uid(){return 'id_'+Math.random().toString(36).slice(2,10)+'_'+Date.now().toString(36)}
+function esc(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function today(){return new Date().toLocaleDateString('en-CA')}
+function niceDate(s){if(!s)return '—';let dt=new Date(s+'T12:00:00');return isNaN(dt)?s:dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+const allShifts=()=>data.weeks.flatMap(w=>w.shifts);
+const allTasks=()=>allShifts().flatMap(s=>s.checks);
+const allSkills=()=>data.skills.flatMap(s=>s.items);
+const trainee=()=>data.trainees.find(t=>t.id===activeTrainee);
+const leadKeys=['lead1','lead2','lead3'];
+// Read legacy shift checkoffs when opening an existing v1.0 browser record.
+function shiftComplete(t,s){if(t?.shifts?.[s.id]!==undefined)return !!t.shifts[s.id].done;return !!(s.checks?.length&&s.checks.every(c=>t?.tasks?.[c.id]?.done))}
+function leadApprovals(t,id){let rec=t?.skills?.[id]||{};return leadKeys.filter(k=>rec.approvals?.[k]).length}
+function fullyApproved(t,id){return leadApprovals(t,id)===leadKeys.length}
+
+function progress(t){let n=allShifts().length;let d=allShifts().filter(sh=>shiftComplete(t,sh)).length;let sn=allSkills().length;let sd=allSkills().filter(i=>fullyApproved(t,i.id)).length;return {d,n,p:n?Math.round(d/n*100):0,sd,sn,sp:sn?Math.round(sd/sn*100):0}}
+function saveAndRender(){save();render()}
+function navTo(target){if(target!==view)editMode=false;view=target;render();window.scrollTo({top:0,behavior:'instant'})}
+function head(title,subtitle,buttons=''){return `<div class="pagehead"><div><h1>${esc(title)}</h1>${subtitle?`<p>${esc(subtitle)}</p>`:''}</div><div class="actions no-print">${buttons}</div></div>`}
+function button(label,action,klass=''){return `<button type="button" class="btn ${klass}" data-action="${action}">${label}</button>`}
+function layout(main){let links=[['overview','Overview','▦'],['trainees','Trainees','◫'],['program','Program','☰'],['skills','Competencies','◎']];let makeNav=(mobile=false)=>links.map(([v,n,icon])=>`<button type="button" data-nav="${v}" class="${view===v?'active':''}">${mobile?'':`<span class="nav-icon">${icon}</span>`}${n}</button>`).join('');document.getElementById('app').innerHTML=`<div class="app"><aside class="side"><div class="brand">YIHUI</div><div><div class="section-label">Barista training</div><nav class="nav">${makeNav()}</nav></div><div class="side-footer"><button type="button" class="settings-link" data-nav="data">Data &amp; Backup</button><div>YIHUI · Training · v1.5</div></div></aside><div><div class="mobilebar"><span class="brand">YIHUI</span><div class="mobile-nav">${makeNav(true)}</div><button type="button" class="mobile-settings" data-nav="data" aria-label="Data & Backup" title="Data & Backup">⋯</button></div><main class="layout">${main}</main></div></div>`;document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>navTo(b.dataset.nav));bindActions()}
+function render(){let html='';if(view==='overview')html=renderOverview();if(view==='trainees')html=renderTrainees();if(view==='trainee')html=renderTrainee();if(view==='program')html=renderProgram();if(view==='skills')html=renderSkillsEditor();if(view==='data')html=renderData();layout(html);bindPage();requestAnimationFrame(updateTraineeProgressPosition)}
+function renderOverview(){const ts=data.trainees,all=ts.map(progress);let active=ts.filter(t=>progress(t).p<100).length;return head('Training Overview','',button('+ Add trainee','add-trainee','dark'))+`<div class="metrics"><div class="metric"><span class="label">Trainees</span><strong>${ts.length}</strong></div><div class="metric"><span class="label">In training</span><strong>${active}</strong></div><div class="metric"><span class="label">Training shifts</span><strong>${allShifts().length}</strong></div></div><div class="panel"><div class="section-heading"><h2>Trainee progress</h2>${button('View all','show-trainees','small')}</div>${renderTraineeList(ts)}</div><div class="grid2" style="margin-top:14px"><div class="panel"><div class="section-heading"><h2>Training program</h2></div><p class="muted">${data.weeks.length} weeks · ${allShifts().length} shifts · ${allShifts().length} shift completions</p>${button('View roadmap','show-program')}</div><div class="panel"><div class="section-heading"><h2>Competencies</h2></div><p class="muted">${data.skills.length} categories · ${allSkills().length} individual standards</p>${button('View competencies','show-skills')}</div></div>`}
+function renderTraineeList(ts){return ts.length?`<div class="table-list">${ts.map(t=>{const p=progress(t);return `<div class="person" data-trainee="${t.id}" tabindex="0" role="button" aria-label="View ${esc(t.name)}"><div><b>${esc(t.name)}</b><div class="sub">Started ${niceDate(t.start)} · ${p.sd}/${p.sn} competencies</div></div><div><div class="progress ${p.p===100?'good':''}"><span style="width:${p.p}%"></span></div></div><b class="percent" style="font-size:13px;text-align:right">${p.p}%</b><span style="color:#aaa">›</span></div>`}).join('')}</div>`:`<div class="empty"><h3>No trainees yet</h3><p>Add your first trainee to start recording progress.</p>${button('+ Add trainee','add-trainee','dark')}</div>`}
+function renderTrainees(){return head('Trainees','',button('+ Add trainee','add-trainee','dark'))+`<div class="panel">${renderTraineeList(data.trainees)}</div>`}
+function renderTrainee(){let t=trainee();if(!t){view='trainees';return renderTrainees()}let p=progress(t);return head(t.name,'Started '+niceDate(t.start),`${button('Edit trainee','edit-trainee')}`)+`<div id="traineeProgressAnchor" class="trainee-progress-anchor"><div class="trainee-progress-card"><div class="trainee-progress-top"><strong>Training progress</strong><span>${p.d} / ${p.n} shifts · ${p.p}%</span></div><div class="progress ${p.p===100?'good':''}"><span style="width:${p.p}%"></span></div><div class="trainee-progress-sub">${p.sd} / ${p.sn} competencies fully signed off</div></div></div><div class="metrics trainee-metrics"><div class="metric"><span class="label">Completed shifts</span><strong>${p.d} / ${p.n}</strong></div><div class="metric"><span class="label">Roadmap progress</span><strong>${p.p}%</strong></div><div class="metric"><span class="label">Fully signed off</span><strong>${p.sd} / ${p.sn}</strong></div></div><div class="tabbar"><button class="tab ${traineeTab==='roadmap'?'active':''}" data-ttab="roadmap">Training roadmap</button><button class="tab ${traineeTab==='competencies'?'active':''}" data-ttab="competencies">Competencies</button><button class="tab ${traineeTab==='notes'?'active':''}" data-ttab="notes">Notes</button></div>${traineeTab==='roadmap'?renderRoadmap(t):traineeTab==='competencies'?renderTraineeCompetencies(t):renderTraineeNotes(t)}`}
+function renderRoadmap(t){let n=0;return data.weeks.map((w,wi)=>`<section class="week"><div class="week-heading"><div><small>WEEK ${String(wi+1).padStart(2,'0')}</small><br><strong>${esc(w.name)}</strong></div><span class="pill">${w.shifts.filter(sh=>shiftComplete(t,sh)).length} / ${w.shifts.length} shifts</span></div><div class="shift-list">${w.shifts.map(sh=>{n++;const done=shiftComplete(t,sh);const expanded=openShifts.has(sh.id);const hasNote=!!String(t.shiftNotes?.[sh.id]||'').trim();return `<section class="shift"><div class="shift-head"><button type="button" class="shift-expand" data-expand="${sh.id}" aria-expanded="${expanded}"><span class="num">${String(n).padStart(2,'0')}</span><span class="title">${esc(sh.title)}</span><span class="shift-note-flag ${done&&hasNote?'':'hidden'}" data-note-indicator="${sh.id}" title="Completed shift has trainer notes">Note</span><span class="chevron">${expanded?'−':'+'}</span></button><label class="shift-complete ${done?'is-done':''}"><input type="checkbox" data-shift-complete="${sh.id}" ${done?'checked':''}><span>Complete</span>${done&&t.shifts?.[sh.id]?.initials?`<span class="shift-initial" title="Signed off by lead: ${esc(t.shifts[sh.id].initials)}">${esc(t.shifts[sh.id].initials)}</span>`:''}</label></div>${expanded?`<div class="shift-body">${sh.teach?`<div class="caption">Teach / Review</div><p class="copy">${esc(sh.teach)}</p>`:''}${sh.practice?`<div class="caption" style="margin-top:16px">Practice / Service</div><p class="copy">${esc(sh.practice)}</p>`:''}<div class="field" style="margin-top:16px"><label>Trainer notes</label><textarea class="notes" data-shift-note="${sh.id}" placeholder="Observations, feedback, next steps...">${esc(t.shiftNotes?.[sh.id]||'')}</textarea></div></div>`:''}</section>`}).join('')}</div></section>`).join('')}
+function renderTraineeCompetencies(t){return `<div class="competency-intro"><span>Mark each box when a lead has observed the trainee demonstrating independent competency.</span><span>Fully signed off: ${progress(t).sd} / ${progress(t).sn}</span></div>`+data.skills.map(cat=>`<section class="skill-group competency-table"><div class="section-heading"><h3>${esc(cat.name)}</h3><span class="pill">${cat.items.filter(it=>fullyApproved(t,it.id)).length}/${cat.items.length}</span></div><div class="competency-header"><span>Competency</span>${leadKeys.map((key,i)=>`<span>Lead ${i+1}</span>`).join('')}</div>${cat.items.map(it=>{let x=t.skills?.[it.id]||{};return `<div class="competency-entry"><div class="competency-line"><div class="competency-label">${esc(it.text)}</div>${leadKeys.map((key,i)=>`<label class="lead-check" title="Lead ${i+1} verified independent competency"><input type="checkbox" data-lead-check="${it.id}" data-lead="${key}" aria-label="Lead ${i+1}: ${esc(it.text)}" ${x.approvals?.[key]?'checked':''}><span class="lead-mobile-label">Lead ${i+1}</span></label>`).join('')}</div><div class="competency-note"><textarea data-skill-note="${it.id}" class="skill-note input" placeholder="Observation / feedback (optional)">${esc(x.note||'')}</textarea></div></div>`}).join('')}</section>`).join('')}
+
+function renderTraineeNotes(t){return `<div class="panel"><h2>Training notes</h2><div class="field"><label>Overall observations / follow-up</label><textarea id="generalNotes" rows="8" placeholder="Strengths, areas to revisit, follow-up plans...">${esc(t.notes||'')}</textarea></div><div style="margin-top:12px;font-size:12px;color:#888">Notes sync with Firebase automatically.</div></div>`}
+function editorToggle(){return `<label class="edit-switch ${editMode?'is-active':''}"><input type="checkbox" id="editModeToggle" ${editMode?'checked':''}><span class="switch-track" aria-hidden="true"></span><span>Edit mode</span></label>`}
+function renderProgram(){let n=0;return head('Training Program','',editorToggle())+`<div class="program-tools">${editMode?button('+ Add week','add-week','small'):''}</div>`+data.weeks.map((w,wi)=>`<section class="program-week"><div class="program-week-top"><div class="program-week-title"><span class="week-index">WEEK ${String(wi+1).padStart(2,'0')}</span><h2>${esc(w.name)}</h2></div>${editMode?`<div class="program-edit-actions">${button('Edit week','edit-week:'+w.id,'small')}${button('+ Shift','add-shift:'+w.id,'small')}${button('↑','move-week:'+w.id+':up','small')}${button('↓','move-week:'+w.id+':down','small')}</div>`:''}</div><div class="shift-list">${w.shifts.map(sh=>{n++;const exp=openShifts.has(sh.id);return `<section class="shift program-shift"><div class="shift-head"><button type="button" class="shift-expand" data-expand="${sh.id}" aria-expanded="${exp}"><span class="num">${String(n).padStart(2,'0')}</span><span class="title">${esc(sh.title)}</span><span class="chevron">${exp?'−':'+'}</span></button></div>${exp?`<div class="shift-body">${editMode?`<div class="program-edit-actions shift-edit-actions">${button('Edit shift','edit-shift:'+sh.id,'small')}${button('↑','move-shift:'+sh.id+':up','small')}${button('↓','move-shift:'+sh.id+':down','small')}${button('Remove shift','delete-shift:'+sh.id,'small danger')}</div>`:''}<div class="content-grid"><div><div class="caption">Teach / Review</div><p class="copy">${esc(sh.teach||'—')}</p></div><div><div class="caption">Practice / Service</div><p class="copy">${esc(sh.practice||'—')}</p></div></div></div>`:''}</section>`}).join('')}</div></section>`).join('')}
+function renderSkillsEditor(){return head('Competencies','',editorToggle())+`<div class="editor-content">${data.skills.map(cat=>`<section class="skill-group"><div class="section-heading"><h3>${esc(cat.name)}</h3>${editMode?`<div class="program-edit-actions">${button('Rename','edit-category:'+cat.id,'small')}${button('+ Competency','add-skill:'+cat.id,'small')}</div>`:''}</div>${cat.items.map(it=>`<div class="editrow"><div class="left">${esc(it.text)}</div>${editMode?`<div class="program-edit-actions">${button('Edit','edit-skill:'+cat.id+':'+it.id,'small')}${button('Delete','delete-skill:'+cat.id+':'+it.id,'small danger')}</div>`:''}</div>`).join('')}</section>`).join('')}</div>`}
+function renderData(){return head('Data & Backup','',editorToggle())+`<div class="panel"><h2>Shared data</h2><div id="cloudDataStatus" class="cloud-status ${cloudStatus==='error'?'is-error':cloudStatus==='saving'?'is-saving':''}">${esc(cloudStatusText)}</div><p>Training content and trainee progress are shared through Firebase Realtime Database across devices.</p><p class="muted">Without authentication, anyone who knows your database endpoint may be able to read or change these records if database rules permit public access. Avoid storing sensitive employee details.</p><div class="actions">${button('Export JSON backup','export','dark')}${button('Import backup','import')}${cloudStatus==='error'?button('Retry sync','retry-sync'):''}</div><hr class="hr"><h2>Program reset</h2><p class="muted">Restore the original 12-shift program and competency categories while keeping trainees and progress for matching items.</p>${editMode?button('Restore default content','reset-program','danger'):'<span class="tiny">Turn on Edit mode to restore default content.</span>'}</div>`}
+
+function bindActions(){document.querySelectorAll('[data-action]').forEach(el=>el.onclick=()=>onAction(el.dataset.action));document.querySelectorAll('[data-trainee]').forEach(el=>{let fn=()=>{activeTrainee=el.dataset.trainee;traineeTab='roadmap';view='trainee';openShifts=new Set();render();window.scrollTo(0,0)};el.onclick=fn;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}}})}
+function bindPage(){let toggle=document.getElementById('editModeToggle');if(toggle)toggle.onchange=()=>{editMode=toggle.checked;render()};document.querySelectorAll('[data-ttab]').forEach(el=>el.onclick=()=>{traineeTab=el.dataset.ttab;render()});document.querySelectorAll('[data-expand]').forEach(el=>el.onclick=()=>{let id=el.dataset.expand;openShifts.has(id)?openShifts.delete(id):openShifts.add(id);let y=window.scrollY;render();window.scrollTo(0,y)});document.querySelectorAll('[data-shift-complete]').forEach(el=>el.onchange=()=>{
+ const t=trainee(),id=el.dataset.shiftComplete;
+ // Keep the checkbox unchanged until a lead signs the completion.
+ el.checked=!el.checked;
+ if(!el.checked){
+  const sh=allShifts().find(s=>s.id===id);
+  modal('Complete training shift',`<p class="muted" style="margin:0 0 14px">${esc(sh?.title||'Training shift')}</p><div class="field"><label for="leadInitials">Lead initials</label><input id="leadInitials" name="initials" type="text" maxlength="6" autocapitalize="characters" autocomplete="off" placeholder="e.g. AB" required></div>`,f=>{
+   const initials=String(f.get('initials')||'').trim().toUpperCase().replace(/\s+/g,'');
+   if(!initials){alert('Lead initials are required to complete a shift.');return;}
+   t.shifts??={};
+   t.shifts[id]={done:true,at:today(),initials};
+   finish();
+  });
+ }else{
+  if(!confirm('Reopen this shift and remove the completion sign-off?'))return;
+  t.shifts??={};t.shifts[id]={done:false,at:'',initials:''};
+  saveAndRender();
+ }
+});document.querySelectorAll('[data-shift-note]').forEach(el=>el.oninput=()=>{let t=trainee();t.shiftNotes??={};t.shiftNotes[el.dataset.shiftNote]=el.value;const noteFlag=document.querySelector(`[data-note-indicator="${el.dataset.shiftNote}"]`);if(noteFlag)noteFlag.classList.toggle('hidden',!(shiftComplete(t,allShifts().find(s=>s.id===el.dataset.shiftNote))&&el.value.trim()));save()});document.querySelectorAll('[data-lead-check]').forEach(el=>el.onchange=()=>{let t=trainee();t.skills??={};let rec=t.skills[el.dataset.leadCheck]??={};rec.approvals??={};rec.approvals[el.dataset.lead]=el.checked;rec.at=today();saveAndRender()});document.querySelectorAll('[data-skill-note]').forEach(el=>el.oninput=()=>{let t=trainee();t.skills??={};t.skills[el.dataset.skill]??={};t.skills[el.dataset.skill].note=el.value;save()});let notes=document.getElementById('generalNotes');if(notes)notes.oninput=()=>{trainee().notes=notes.value;save()}}
+function onAction(a){const p=a.split(':');const protectedActions=['reset-program','add-week','add-shift','edit-week','edit-shift','add-task','edit-task','add-skill','edit-skill','edit-category','move-week','move-shift','delete-task','delete-shift','delete-skill'];if((protectedActions.includes(a)||protectedActions.includes(p[0]))&&!editMode){alert('Turn on Edit mode to change training content.');return;}if(a==='show-trainees')return navTo('trainees');if(a==='show-program')return navTo('program');if(a==='show-skills')return navTo('skills');if(a==='add-trainee')return editTrainee();if(a==='edit-trainee')return editTrainee(trainee());if(a==='retry-sync'){setCloudStatus('saving','Retrying synchronization…');scheduleUpload();return}if(a==='export')return exportBackup();if(a==='import')return importBackup();if(a==='reset-program'){if(confirm('Restore default training content? Your trainees will remain.')){data.weeks=clone(SEED.weeks);data.skills=clone(SEED.skills);saveAndRender()}return}if(a==='add-week')return editWeek();if(p[0]==='edit-week')return editWeek(data.weeks.find(w=>w.id===p[1]));if(p[0]==='add-shift')return editShift(null,p[1]);if(p[0]==='edit-shift')return editShift(allShifts().find(s=>s.id===p[1]));if(p[0]==='add-task')return editTask(p[1]);if(p[0]==='edit-task')return editTask(p[1],p[2]);if(p[0]==='edit-category')return editCategory(data.skills.find(c=>c.id===p[1]));if(p[0]==='add-skill')return editSkill(p[1]);if(p[0]==='edit-skill')return editSkill(p[1],p[2]);if(p[0]==='move-week')return moveIn(data.weeks,p[1],p[2]);if(p[0]==='move-shift'){let w=data.weeks.find(w=>w.shifts.some(s=>s.id===p[1]));return moveIn(w?.shifts,p[1],p[2])}if(p[0]==='delete-task')return mutateDelete(()=>{let s=allShifts().find(x=>x.id===p[1]);s.checks=s.checks.filter(x=>x.id!==p[2])},'Remove this checkoff from the program?');if(p[0]==='delete-shift')return mutateDelete(()=>{let w=data.weeks.find(w=>w.shifts.some(s=>s.id===p[1]));w.shifts=w.shifts.filter(s=>s.id!==p[1])},'Remove this shift from the training program?');if(p[0]==='delete-skill')return mutateDelete(()=>{let c=data.skills.find(c=>c.id===p[1]);c.items=c.items.filter(x=>x.id!==p[2])},'Remove this competency?')}
+function mutateDelete(fn,msg){if(confirm(msg)){fn();saveAndRender()}}
+function moveIn(arr,id,direction){if(!arr)return;let i=arr.findIndex(x=>x.id===id),j=i+(direction==='up'?-1:1);if(i<0||j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];saveAndRender()}
+function modal(title,body,commit,other=''){modalState={commit};document.getElementById('overlay-root').innerHTML=`<div class="overlay"><section class="modal" role="dialog" aria-modal="true"><div class="section-heading"><h2>${esc(title)}</h2><button class="btn small" data-close>×</button></div><form id="editForm">${body}<div class="modal-actions">${other}<button type="button" class="btn" data-close>Cancel</button><button type="submit" class="btn dark">Save</button></div></form></section></div>`;let root=document.getElementById('overlay-root');root.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModal);root.querySelector('.overlay').onclick=e=>{if(e.target===root.querySelector('.overlay'))closeModal()};root.querySelector('form').onsubmit=e=>{e.preventDefault();modalState.commit(new FormData(e.target),e.target)};root.querySelector('input,textarea')?.focus()}
+function closeModal(){document.getElementById('overlay-root').innerHTML='';modalState=null;if(cloudReady)requestAnimationFrame(refreshFromCloud)}
+function field(label,name,value='',kind='input',required=false){return `<div class="field"><label>${esc(label)}</label>${kind==='textarea'?`<textarea name="${name}" rows="4">${esc(value)}</textarea>`:`<input name="${name}" ${kind==='date'?'type="date"':'type="text"'} value="${esc(value)}" ${required?'required':''}>`}</div>`}
+function finish(){closeModal();saveAndRender()}
+function editTrainee(t){modal(t?'Edit trainee':'New trainee',`<div class="fields">${field('Name','name',t?.name||'','input',true)}${field('Start date','start',t?.start||today(),'date')}</div>`,f=>{let name=f.get('name').trim();if(!name)return;if(t){t.name=name;t.start=f.get('start')}else{let newT={id:uid(),name,start:f.get('start'),tasks:{},shifts:{},skills:{},shiftNotes:{},notes:''};data.trainees.push(newT);activeTrainee=newT.id;view='trainee';traineeTab='roadmap'}finish()},t?`<button type="button" class="btn danger" id="removeTrainee">Delete trainee</button>`:'');if(t){document.getElementById('removeTrainee').onclick=()=>{if(confirm('Permanently delete '+t.name+' and their recorded training progress?')){data.trainees=data.trainees.filter(x=>x.id!==t.id);view='trainees';activeTrainee=null;finish()}}}}
+function editWeek(w){modal(w?'Edit week':'Add week',field('Week title','name',w?.name||'','input',true),f=>{let name=f.get('name').trim();if(!name)return;if(w)w.name=name;else data.weeks.push({id:uid(),name,shifts:[]});finish()},w?`<button type="button" id="deleteWeek" class="btn danger">Remove week</button>`:'');if(w)document.getElementById('deleteWeek').onclick=()=>mutateDelete(()=>{data.weeks=data.weeks.filter(x=>x.id!==w.id);closeModal()},'Remove this week and all shifts within it?')}
+function editShift(s,weekId){let w=data.weeks.find(w=>w.shifts.some(i=>i.id===s?.id))||data.weeks.find(w=>w.id===weekId);modal(s?'Edit shift':'Add shift',`<div style="display:grid;gap:13px">${field('Shift title','title',s?.title||'','input',true)}${field('Teach / Review','teach',s?.teach||'','textarea')}${field('Practice / Service','practice',s?.practice||'','textarea')}</div>`,f=>{if(!f.get('title').trim())return;if(s){s.title=f.get('title').trim();s.teach=f.get('teach').trim();s.practice=f.get('practice').trim()}else{let id=uid();w.shifts.push({id,title:f.get('title').trim(),teach:f.get('teach').trim(),practice:f.get('practice').trim(),checks:[]})}finish()})}
+function editTask(shiftId,itemId){let s=allShifts().find(s=>s.id===shiftId),it=s.checks.find(it=>it.id===itemId);modal(it?'Edit checkoff':'Add checkoff',field('Checkoff description','text',it?.text||'','textarea',true),f=>{let text=f.get('text').trim();if(!text)return;if(it)it.text=text;else s.checks.push({id:uid(),text});finish()})}
+function editCategory(cat){if(!editMode||!cat)return;modal('Rename category',field('Category name','name',cat.name,'input',true),f=>{let name=f.get('name').trim();if(!name)return;cat.name=name;finish()})}
+function editSkill(catId,itemId){let cat=data.skills.find(c=>c.id===catId),it=cat.items.find(it=>it.id===itemId);modal(it?'Edit competency':'Add competency',field('Competency','text',it?.text||'','textarea',true),f=>{let text=f.get('text').trim();if(!text)return;if(it)it.text=text;else cat.items.push({id:uid(),text});finish()})}
+function exportBackup(){let blob=new Blob([JSON.stringify({...data,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='YIHUI_Training_Backup_'+today()+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500)}
+function importBackup(){let i=document.createElement('input');i.type='file';i.accept='application/json,.json';i.onchange=()=>{let file=i.files?.[0];if(!file)return;file.text().then(text=>{let o=JSON.parse(text);if(!Array.isArray(o.weeks)||!Array.isArray(o.skills)||!Array.isArray(o.trainees))throw new Error('Unrecognized backup file');if(confirm('Replace all SHARED training records in Firebase with this backup? Other managers will see these changes.')){data={weeks:o.weeks,skills:o.skills,trainees:o.trainees};activeTrainee=null;view='overview';saveAndRender()}}).catch(e=>alert('Could not import: '+e.message))};i.click()}
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+window.trainingCloud={
+ receive(remote){
+  const empty=!validCloudData(remote);
+  serverData=empty?clone(SEED):clone(remote);
+  if(!initialCloudLoaded){
+   initialCloudLoaded=true;cloudReady=true;
+   data=applyChanges(serverData,[...sendingEdits,...pendingEdits]);shadowData=clone(data);
+   document.getElementById('cloudGate')?.remove();
+   setCloudStatus('connected','Connected · Changes sync across devices');render();
+  }else{
+   refreshFromCloud();if(!pendingEdits.length&&!sendingEdits.length)setCloudStatus('connected','Connected · Changes sync across devices');
+  }
+ },
+ error(e){cloudReady=false;setCloudStatus('error','Firebase connection failed: '+(e?.message||String(e))+'\nCheck the Realtime Database rules.');const gate=document.getElementById('cloudGateMessage');if(gate)gate.textContent=cloudStatusText},
+ seed(){return clone(SEED)},
+ merge(current,ops){return applyChanges(current,ops)},
+ async send(ops){return window.__cloudTransaction(ops)}
+};
+async function uploadChanges(){
+ if(sending||!cloudReady||!pendingEdits.length)return;
+ sending=true;sendingEdits=pendingEdits.splice(0);
+ try{
+  await window.trainingCloud.send(sendingEdits);
+  sendingEdits=[];setCloudStatus('connected','Connected · Changes synced');
+ }catch(e){
+  pendingEdits.unshift(...sendingEdits);sendingEdits=[];
+  setCloudStatus('error','Sync failed: '+(e?.message||String(e))+'. Changes are pending; retry using the status page.');
+ }
+ sending=false;
+ if(pendingEdits.length&&cloudReady&&cloudStatus!=='error')scheduleUpload();
+}
+render();
+setTimeout(()=>{if(!initialCloudLoaded&&cloudStatus==='connecting'){const gate=document.getElementById('cloudGateMessage');if(gate)gate.textContent='Still connecting to Firebase. Check your internet connection and Realtime Database rules.'}},15000);
+</script>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+import { getDatabase, ref, onValue, runTransaction } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
+const firebaseConfig={
+ apiKey:'AIzaSyAxHZbsFjRRaevXRq7vviGW6khgtuHN24E',
+ authDomain:'training-program-46853.firebaseapp.com',
+ databaseURL:'https://training-program-46853-default-rtdb.firebaseio.com',
+ projectId:'training-program-46853',
+ storageBucket:'training-program-46853.firebasestorage.app',
+ messagingSenderId:'548443030399',
+ appId:'1:548443030399:web:98f850543a9971cbdd104a'
+};
+try{
+ const app=initializeApp(firebaseConfig);
+ const database=getDatabase(app);
+ const shared=ref(database,'trainingProgram/v1');
+ window.__cloudTransaction=async ops=>{
+  const result=await runTransaction(shared,current=>window.trainingCloud.merge(current,ops),{applyLocally:false});
+  if(!result.committed)throw new Error('Database transaction was not committed');
+  return result;
+ };
+ onValue(shared,async snapshot=>{
+  if(!snapshot.exists()){
+   let local=null;try{local=JSON.parse(localStorage.getItem('yihui_training_app_v1')||'null')}catch(e){}
+   let seed=window.trainingCloud.seed();
+   if(local&&Array.isArray(local.trainees)&&local.trainees.length){
+    if(confirm('Your browser has existing local trainee records, but Firebase is empty. Upload your local records to initialize the shared database?'))seed=local;
+   }
+   try{
+    await runTransaction(shared,current=>current??seed,{applyLocally:false});
+   }catch(e){window.trainingCloud.error(e)}
+   return;
+  }
+  window.trainingCloud.receive(snapshot.val());
+ },e=>window.trainingCloud.error(e));
+}catch(e){window.trainingCloud.error(e)}
+</script>
+</body></html>
